@@ -244,8 +244,8 @@ RAW;
                 }
 
                 $stderr = isset($task['docs']['stderr'])?$this->formatFileName($task['docs']['stderr'], $task):$stdout;
-                if(!is_writable($stderr)) {
-                    $stdout = '/dev/null';
+                if(!is_writable(dirname($stderr))) {
+                    $stderr = '/dev/null';
                 }
                 $this->runCommandBackground($command, $stdout, $stderr);
                 Yii::info('Running task ['.(++$runned).']: '.$task['command'].' '.$task['action'], self::CATEGORY_LOGS);
